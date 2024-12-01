@@ -1,0 +1,62 @@
+@@ -0,0 +1,58 @@
+[*.cs]
+# Исключения для орфографических ошибок
+spelling_exclusion_path = .\exclusion.dic
+
+# IDE0001 и IDE0002 'System.IO.FileInfo' упрощается до 'FileInfo'
+dotnet_diagnostic.IDE0001.severity = warning
+dotnet_diagnostic.IDE0002.severity = warning
+# Убирает ненужные this
+dotnet_diagnostic.IDE0003.severity = warning
+# Убирает ненужные приведения типов
+dotnet_diagnostic.IDE0004.severity = warning
+# Удаление ненужных using
+dotnet_diagnostic.IDE0005.severity = warning
+
+# IDE0090: Use 'new(...)'
+dotnet_diagnostic.IDE0090.severity = warning
+
+# Упрощение тернарников с явными true/false возвращаемыми значениями
+dotnet_style_prefer_simplified_boolean_expressions = true:warning
+
+# Использование namespace с областью действия файла
+csharp_style_namespace_declarations = file_scoped:suggestion
+
+# Отключение предложения Regex, который делает текущий класс partial
+dotnet_diagnostic.SYSLIB1045.severity = none
+
+# IDE0300: Simplify collection initialization 
+dotnet_diagnostic.IDE0300.severity = none
+
+# Установка свойств при инициализации объекта
+dotnet_style_object_initializer = true
+
+# Упрощенная инициализация массивов
+dotnet_style_prefer_collection_expression = true
+
+# Стандартный порядок модификаторов
+dotnet_diagnostic.IDE0036.severity = warning
+
+# Явное указание модификаторов доступа
+dotnet_style_require_accessibility_modifiers = always:warning
+
+# Удаление неиспользуемых приватных членов
+dotnet_diagnostic.IDE0051.severity = warning
+
+# Удаление ненужных сравнений
+dotnet_diagnostic.IDE0100.severity = warning
+
+# Удаление ненужных нижних подчеркиваний
+dotnet_diagnostic.IDE0110.severity = warning
+
+# Понизить предупреждение о том, что не обработаны все случае в switch
+dotnet_diagnostic.CS8509.severity = suggestion
+
+# Удаление неиспользуемых параметров
+dotnet_code_quality_unused_parameters = non_public:warning
+
+# enum не должн иметь повторяющиеся значения
+dotnet_diagnostic.CA1069.severity = warning
+
+# IDE0090: Use 'new(...)'
+dotnet_diagnostic.IDE0090.severity = none

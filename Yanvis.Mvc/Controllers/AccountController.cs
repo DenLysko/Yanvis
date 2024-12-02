@@ -23,7 +23,10 @@ public class AccountController : BaseController
         return View("Index", new AccountViewModel());
     }
 
-    public async Task<IActionResult> LoginAsync([Bind(Prefix = "1")] LoginViewModel model)
+
+
+    [HttpPost]
+    public async Task<IActionResult> LoginAsync([Bind(Prefix = "l")] LoginViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -32,6 +35,7 @@ public class AccountController : BaseController
                 LoginViewModel = model
             });
         }
+
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
         if (user is null)
         {
@@ -41,6 +45,7 @@ public class AccountController : BaseController
                 LoginViewModel = model
             });
         }
+
         await AuthenticateAsync(user);
         return RedirectToAction("Index", "Home");
     }

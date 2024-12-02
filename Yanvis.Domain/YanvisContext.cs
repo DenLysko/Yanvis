@@ -11,7 +11,7 @@ public class YanvisContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Database=mydb;Username=myuser;Password=mypassword");
+        optionsBuilder.UseNpgsql("Host=localhost;Database=Yanvis;Username=Yanvis;Password=Yanvis1");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

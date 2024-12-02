@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Yanvis.Domain;
+using Yanvis.Domain.Repositories;
 namespace WebApplication1;
 
 public class Program
@@ -12,11 +13,18 @@ public class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
-        var connectionString = builder.Configuration.GetConnectionString("Default");
-        builder.Services.AddDbContext<YanvisContext>(options =>
-            options.UseNpgsql(connectionString));
+        //var connectionString = builder.Configuration.GetConnectionString("Default");
+        //builder.Services.AddDbContext<YanvisContext>(options =>
+        //    options.UseNpgsql(connectionString));
 
-        //builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+        // Для изменения БД в случае чего
+        builder.Services.AddDbContext<YanvisContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        // Регистрация репозитория
+        builder.Services.AddScoped(typeof(IRepository<>), typeof(PostgresRepository<>));
+
+        builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/account");

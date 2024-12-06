@@ -3,6 +3,7 @@ using System;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Yanvis.Domain;
@@ -12,9 +13,11 @@ using Yanvis.Domain;
 namespace Yanvis.Domain.Migrations
 {
     [DbContext(typeof(YanvisContext))]
-    partial class YanvisContextModelSnapshot : ModelSnapshot
+    [Migration("20241206205131_202412062351")]
+    partial class _202412062351
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

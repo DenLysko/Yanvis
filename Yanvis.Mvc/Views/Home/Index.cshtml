@@ -1,8 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Yanvis.Mvc.Models
 
-<div class="text-center">
+@model JSONEditorViewModel
+
+<div id="editor" style="height: 500px; width: 100%;"></div>
+<button id="save" class="btn btn-primary mt-3">Сохранить</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+<script>
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/json");
+    editor.setValue(`{
+        "exampleKey": "exampleValue"
+    }`, 1); // Initialize with JSON
+
+    document.getElementById("save").addEventListener("click", function () {
+        const json = editor.getValue();
+        // Отправка на сервер
+        fetch('/JSONEditor/SaveJson', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        }).then(response => {
+            if (response.ok) {
+                alert("JSON сохранён!");
+            } else {
+                alert("Ошибка сохранения!");
+            }
+        });
+    });
+</script>
+
+
+
+@* @{
+    ViewData["Title"] = "Home Page";
+} *@
+
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> *@

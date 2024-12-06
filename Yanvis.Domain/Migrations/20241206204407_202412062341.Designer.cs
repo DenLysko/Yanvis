@@ -3,6 +3,7 @@ using System;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Yanvis.Domain;
@@ -12,9 +13,11 @@ using Yanvis.Domain;
 namespace Yanvis.Domain.Migrations
 {
     [DbContext(typeof(YanvisContext))]
-    partial class YanvisContextModelSnapshot : ModelSnapshot
+    [Migration("20241206204407_202412062341")]
+    partial class _202412062341
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,11 +52,11 @@ namespace Yanvis.Domain.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<JsonElement>("Content")
+                        .HasColumnType("jsonb");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<JsonElement>("JsonRecordContent")
-                        .HasColumnType("jsonb");
 
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("timestamp with time zone");
@@ -63,7 +66,7 @@ namespace Yanvis.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("JsonRecords");
+                    b.ToTable("JsonRecordes");
                 });
 
             modelBuilder.Entity("Yanvis.Domain.User", b =>

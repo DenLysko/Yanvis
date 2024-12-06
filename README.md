@@ -1,2 +1,2 @@
 # Yanvis
-Yet another visio
+Yet ANother VISio
